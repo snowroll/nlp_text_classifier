@@ -5,7 +5,7 @@ from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
 
-app.debug = True
+app.debug = False
 app.config.from_object(Config)
 
 from app import routes
