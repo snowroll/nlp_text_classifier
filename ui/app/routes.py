@@ -1,8 +1,11 @@
 from flask import render_template, request  #将页面展示与业务逻辑分离
 from app import app
+from .Algorithm.KNN import KNN
 
 import json
 from flask import flash, redirect, url_for
+
+knn = KNN()  # KNN 分类器
 
 @app.route('/')  #python装饰器，将之后的函数作为某些事件的回调函数
 @app.route('/index')
@@ -17,7 +20,11 @@ def text_classifier():
     if request.method == "POST":
         print("it's post", request)
         text = request.form["name"]  #这里可以添加对文本的处理函数
-        result = todo(text)
+        print(text, type(text))
+        result = knn.predict(text)
+        # result = ""
+        print("predict result is :", result)
+        # result = todo(text)
         return result
     return render_template("index.html")
 
